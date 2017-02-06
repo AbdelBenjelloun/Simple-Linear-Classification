@@ -72,8 +72,11 @@ plot_data_labels(Data_X, True_Y)
 linear_prediction_w = gradient_Stochastic( Data_X, True_Y, K)
 linear_prediction_label = generate_labels( Data_X, linear_prediction_w)
 plot_data_labels(Data_X, linear_prediction_label)
+# The  error in percentage:
+error = 100*(N - np.sum( [ int( True_Y[i] == linear_prediction_label[i]) for i in range(N) ]))/N
 
-############### Second case : Y = < W, X > ################
+
+############### Second case : Y = < W, X > + epsilon ~ 0.2*N(0, 1) ################
 Y = [ 2*int( np.dot(W, Data_X[:,i]) + npr.randn()/5 > 0) - 1 for i in range(Data_X.shape[1])] 
 #plot the map (X, Y)
 plot_data_labels(Data_X, Y)
@@ -81,7 +84,8 @@ plot_data_labels(Data_X, Y)
 linear_prediction_w = gradient_Stochastic( Data_X, Y, K)
 linear_prediction_noise = generate_labels( Data_X, linear_prediction_w)
 plot_data_labels(Data_X, linear_prediction_noise)
-
+# The  error in percentage:
+error = 100*(N - np.sum( [ int( Y[i] == linear_prediction_noise[i]) for i in range(N) ]))/N
  
 
 
